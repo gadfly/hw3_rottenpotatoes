@@ -38,3 +38,9 @@ gem 'jquery-rails'
 
 # To use debugger
 gem 'haml'
+
+# Only for local debugger, please comment out before push to heroku
+gem 'linecache19', :git => 'git://github.com/mark-moseley/linecache'
+gem 'ruby-debug-base19x', '~> 0.11.30.pre4'
+gem 'ruby-debug19'
+
