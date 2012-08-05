@@ -263,9 +263,18 @@ vendor
 
 ====================================
 
+1. I changed Gemfile.lock
+	
+	cucumber (1.1.8) ==>  cucumber (1.2.1)
+  	gherkin (>= 2.8.0)	 ==> gherkin (>= 2.11.1)
+
+====================================
+
 To create movie table:
 
-run rake db:migrate 
+1. run rake db:migrate 
+
+2. run rake db:test:prepare
 
 ====================================
 
@@ -274,7 +283,7 @@ This project should use cucumber here
 1. install cucumber first
 sudo gem install cucumber
 
-2. run bundle exec cucumber
+2. ./script/cucumber
 
 
 
