@@ -4,13 +4,15 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
- 	Given %Q{I am on the new movie page}
+
+	Given %Q{I am on the new movie page}
   	When  %Q{I fill in "Title" with "#{movie[:title]}"}
   	And   %Q{I select "#{movie[:rating]}" from "Rating"}
 	And   %Q{I select "#{movie[:release_date].split('-').last}" from "movie_release_date_1i"}
   	And   %Q{I select "#{movie[:release_date].split('-').second}" from "movie_release_date_2i"}
   	And   %Q{I select "#{movie[:release_date].split('-').first}" from "movie_release_date_3i"}
   	And   %Q{I press "Save Changes"}
+
   end
 end
 
