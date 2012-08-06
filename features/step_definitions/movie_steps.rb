@@ -23,9 +23,9 @@ Then /I should see "(.*)" before "(.*)"/ do |e1, e2|
   #  ensure that that e1 occurs before e2.
   #  page.content  is the entire content of the page as a string.
 
-  movies_list = page.all("table#movies>tbody>tr>td").map(&:text)
+  movies_list = page.all("table#movies tbody tr td[1]").map(&:text)  
 
-  assert movies_list.index(e1) < movies_list.index(e2), "#{e1} is not before #{e2}"
+  assert movies_list.index(e1) < movies_list.index(e2), "#{e1} not is before #{e2}"
 
 end
 
