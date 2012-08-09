@@ -15,13 +15,29 @@ module NavigationHelpers
 
  	when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
     when /^the movies page$/ then '/movies'
-    when /^the edit page for (.+)$/ then 
+    when /^the edit page for "(.+)"$/ then 
 		begin
-			page_name =~ /^the edit page for "(.+)"$/
+			page_name =~ /^the edit page for \"(.+)\"$/
 
-			id = Movie.find_by_title( $1 ).id
+			movie = Movie.find_by_title $1 
 
-			"/movies/" + (id.to_s) + "/edit"
+			"/movies/#{movie.id}/edit"
+		end
+    when /^the details page for "(.+)"$/ then 
+		begin
+			page_name =~ /^the details page for \"(.+)\"$/
+
+			movie = Movie.find_by_title $1 
+
+			"/movies/#{movie.id}"
+		end
+	when /^the Similar Movies page for "(.+)"$/ then 
+		begin
+			page_name =~ /^the Similar Movies page for \"(.+)\"$/
+
+			movie = Movie.find_by_title $1 
+
+			"/movies/#{movie.id}/similar"
 		end
 #    when /^the home\s?page$/ then '/'
 

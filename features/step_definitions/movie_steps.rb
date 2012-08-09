@@ -65,6 +65,10 @@ Then /^I should not see the following ratings: (.*)$/ do |rating_list|
   	end
 end
  
+Then /^the director of "(.*?)" should be "(.*?)"$/ do |arg1, arg2|
+	movie = Movie.find_by_title arg1 
+	assert_equal movie.director, arg2
+end
 
 # Make it easier to express checking or unchecking several boxes at once
 #  "When I uncheck the following ratings: PG, G, R"
@@ -81,6 +85,8 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
           step %Q{the "ratings_#{rating}" checkbox should be checked}
 		end
 	end
+
+
 
 
 end
