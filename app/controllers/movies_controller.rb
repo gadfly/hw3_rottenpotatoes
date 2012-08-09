@@ -7,6 +7,11 @@ class MoviesController < ApplicationController
   end
 
   def index
+	director = params[:director]
+	if director != nil then
+		@errormsg = "'#{director}' has no director info"
+	end
+
     sort = params[:sort] || session[:sort]
     case sort
     when 'title'
@@ -16,6 +21,12 @@ class MoviesController < ApplicationController
     end
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
+
+	director = params[:director]
+	if ( director != nil) then
+		@movies = {}
+		return
+	end
 
     if params[:sort] != session[:sort]
       session[:sort] = sort
@@ -60,10 +71,12 @@ class MoviesController < ApplicationController
 
   def similar
     @movie = Movie.find(params[:id])
+
 	if (@movie.director == '' || @movie.director == nil) then
-		redirect_to "/movies" and return
+		
+		redirect_to "/movies?director=#{@movie.title}" and return 
 	else
-		@movies = Movie.find_all_by_director(@movie.director)
+	    @movies = Movie.find_all_by_director(@movie.director)
 	end
   end
 end
