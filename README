@@ -285,5 +285,16 @@ sudo gem install cucumber
 
 2. ./script/cucumber
 
+=================================
+
+4.2. Create and apply a migration that adds the Director field to the movies table. The
+director field should be a string containing the name of the movie’s director. HINT: use
+the add_column method of ActiveRecord::Migration to do this. (Remember that once
+the migration is applied, you also have to do rake db:test:prepare to load the new
+post-migration schema into the test database!)
+
+rails generate migration AddDirectorToMovies director:string
+
+=================================
 
 

@@ -4,6 +4,7 @@ Given /the following movies exist/ do |movies_table|
   movies_table.hashes.each do |movie|
     # each returned element will be a hash whose key is the table header.
     # you should arrange to add that movie to the database here.
+
  	#Given %Q{I am on the new movie page}
   	#When  %Q{I fill in "Title" with "#{movie[:title]}"}
   	#And   %Q{I select "#{movie[:rating]}" from "Rating"}
@@ -11,9 +12,12 @@ Given /the following movies exist/ do |movies_table|
   	#And   %Q{I select "#{movie[:release_date].split('-').second}" from "movie_release_date_2i"}
   	#And   %Q{I select "#{movie[:release_date].split('-').first}" from "movie_release_date_3i"}
   	#And   %Q{I press "Save Changes"}
+
 	Movie.create!(movie)
+
   end
   assert movies_table.hashes.size == Movie.all.count
+
 end
 
 # Make sure that one string (regexp) occurs before or after another one
@@ -67,9 +71,6 @@ end
 #  "When I check the following ratings: G"
 
 When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
-  # HINT: use String#split to split up the rating_list, then
-  #   iterate over the ratings and reuse the "When I check..." or
-  #   "When I uncheck..." steps in lines 89-95 of web_steps.rb
 	
 	rating_list.split(',').each do |rating|
 		if uncheck == "un" then
@@ -82,7 +83,4 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
 	end
 
 
-
-
-	
 end
