@@ -15,6 +15,7 @@ module NavigationHelpers
 
  	when /^the (RottenPotatoes )?home\s?page$/ then '/movies'
     when /^the movies page$/ then '/movies'
+    when /^the new page$/ then '/movies/new'
     when /^the edit page for "(.+)"$/ then 
 		begin
 			page_name =~ /^the edit page for \"(.+)\"$/

@@ -88,5 +88,4 @@ When /I (un)?check the following ratings: (.*)/ do |uncheck, rating_list|
 
 
 
-
 end

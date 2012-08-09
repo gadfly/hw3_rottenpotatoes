@@ -32,3 +32,19 @@ Scenario: can't find similar movies if we don't know director (sad path)
   When  I follow "Find Movies With Same Director"
   Then  I should be on the home page
   And   I should see "'Alien' has no director info"
+
+Scenario: add director to a new movie
+  When I go to the home page
+  And  I follow "Add new movie"
+  Then I should be on the new page
+  When I fill in "Title" with "The Last Chance"
+  And  I fill in "Director" with "Tom Cat"
+  And  I press "Save Changes"
+  Then the director of "The Last Chance" should be "Tom Cat"
+
+Scenario: delete a new movie
+  Given I am on the details page for "Alien"
+  When  I press "Delete"
+  Then a confirmation box saying "Are you sure?" should pop up
+  Given I want to click "Ok"
+  Then I should be on the home page

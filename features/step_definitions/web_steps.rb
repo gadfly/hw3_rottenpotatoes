@@ -253,4 +253,28 @@ Then /^show me the page$/ do
   save_and_open_page
 end
 
+Given /^I confirm popup$/ do
+  page.driver.browser.switch_to.alert.accept    
+end
+
+When /^I dismiss popup$/ do
+  page.driver.browser.switch_to.alert.dismiss
+end
+
+When /^a confirmation box saying "(.*?)" should pop up$/ do |message|
+  
+  assert_equal message, "Are you sure?"
+
+end
+
+Given /^I want to click "(.*?)"$/ do |option|
+
+ # retval = (option == "Ok") ? "true" : "false"
+  begin
+	  page.evaluate_script('window.confirm = function() { return true; }')
+  	  page.click(option)
+      rescue Capybara::NotSupportedByDriverError
+  end
+	
+end
 
