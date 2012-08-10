@@ -8,4 +8,8 @@ Rottenpotatoes::Application.routes.draw do
 	  get 'similar',:on => :member
 	end
 
+   #match '/help', :to => redirect('/help/about.html')
+   match "/help", :controller => "help", :action => "about"
+
+
 end
