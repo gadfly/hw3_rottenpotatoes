@@ -16,6 +16,7 @@ group :development, :test do
   gem 'launchy'							# a useful debugging aid for user stories 
   gem 'rspec-rails'
   gem 'simplecov'
+  gem 'guard-rspec'
 end
 group :production do
 #  gem 'pg'
