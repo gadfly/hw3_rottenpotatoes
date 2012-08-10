@@ -1,9 +1,26 @@
+# Ignore other unneeded files.
+
 #*
 \#*\#
 *~
+.project
+.DS_Store
+
 TAGS
-db/schema.rb
-log/
+
+
+# Ignore all logfiles and tempfiles.
+/log/
+/tmp
+
+# Ignore bundler config
+/.bundle
+bundler_stubs/
+
+# Ignore the default SQLite database.
 db/*.sqlite3
-tmp
+db/schema.rb
+
+# Ignore the coverage output
+
 coverage
