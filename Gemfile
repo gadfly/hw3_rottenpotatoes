@@ -6,7 +6,7 @@ gem 'rails', '3.1.0'
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
 # for Heroku deployment - as described in Ap. A of ELLS book
-group :development, :test do
+group :development do
   gem 'sqlite3'
  # gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'cucumber-rails'
@@ -18,6 +18,21 @@ group :development, :test do
   gem 'simplecov'
   gem 'guard-rspec'
 end
+
+# for Heroku deployment - as described in Ap. A of ELLS book
+group :test do
+  gem 'sqlite3'
+  gem 'cucumber-rails-training-wheels'	# some pre-fabbed step definitions  
+  gem 'database_cleaner'				# to clear Cucumber's test database between runs
+  gem 'capybara'						# lets Cucumber pretend to be a web browser
+  gem 'launchy'							# a useful debugging aid for user stories 
+  gem 'rspec-rails'
+  gem 'simplecov'
+  gem 'guard-spork'
+  gem 'spork'
+end
+
+
 group :production do
 #  gem 'pg'
 end
