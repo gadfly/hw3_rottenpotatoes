@@ -7,10 +7,6 @@ class MoviesController < ApplicationController
   end
 
   def index
-	director = params[:director]
-	if director != nil then
-		@errormsg = "'#{director}' has no director info"
-	end
 
     sort = params[:sort] || session[:sort]
     case sort
@@ -22,10 +18,9 @@ class MoviesController < ApplicationController
     @all_ratings = Movie.all_ratings
     @selected_ratings = params[:ratings] || session[:ratings] || {}
 
-	director = params[:director]
-	if ( director != nil) then
-		@movies = {}
-		return
+	if flash[:notice] != nil
+		#flash[:notice] = flash[:notice] 
+		@movies = {} and return
 	end
 
     if params[:sort] != session[:sort]
@@ -73,8 +68,8 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
 
 	if (@movie.director == '' || @movie.director == nil) then
-		
-		redirect_to "/movies?director=#{@movie.title}" and return 
+		flash[:notice] = "'#{@movie.title}' has no director info"
+		redirect_to movies_path
 	else
 	    @movies = Movie.find_all_by_director(@movie.director)
 	end
